@@ -1,19 +1,19 @@
 {
-  "schemaVersion": 1,
-  "services": [
-    {
-      "id": "sportscenter",
-      "name": "#1 SportsCenter",
-      "serverUrl": "http://voltstreamstv.com:8080",
-      "protocol": "xtream",
-      "enabled": true
-    },
-    {
-      "id": "posb",
-      "name": "POSB",
-      "serverUrl": "http://m3u.sstv.one",
-      "protocol": "xtream",
-      "enabled": true
-    }
-  ]
+    "schemaVersion": 1,
+    "services": [
+        {
+            "id": "sportscenter",
+            "name": "#1 SportsCenter",
+            "serverUrl": "http://voltstreamstv.com:8080",
+            "protocol": "xtream",
+            "enabled": true
+        },
+        {
+            "id": "posb",
+            "name": "POSB",
+            "serverUrl": "http://m3u.sstv.one",
+            "protocol": "xtream",
+            "enabled": true
+        }
+    ]
 }
