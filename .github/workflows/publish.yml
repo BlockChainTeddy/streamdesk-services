@@ -1,0 +1,39 @@
+name: Publish read-only service feed
+on:
+  push:
+    branches: [main]
+    paths: ['providers.json', 'validate.mjs', '.github/workflows/publish.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node validate.mjs providers.json
+      - name: Prepare public files only
+        run: |
+          mkdir -p public
+          cp providers.json public/providers.json
+          printf '%s\n' '<!doctype html><html lang="en"><meta charset="utf-8"><title>StreamDesk services</title><h1>StreamDesk service directory</h1><p>Read-only service configuration. No customer credentials are hosted here.</p><a href="providers.json">View service feed</a></html>' > public/index.html
+          touch public/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+
