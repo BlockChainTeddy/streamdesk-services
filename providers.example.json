@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "services": [
+    {
+      "id": "example-service",
+      "name": "Example Service",
+      "serverUrl": "https://provider.example.invalid",
+      "protocol": "xtream",
+      "enabled": false
+    }
+  ]
+}
